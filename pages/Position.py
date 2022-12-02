@@ -11,7 +11,7 @@ log_file = st.file_uploader("choose a log file")
 if log_file is not None:
     data = pd.read_csv(log_file, header=None)
 
-    st.dataframe(data=data)
+    st.dataframe(data=data, use_container_width=True)
 
     ts_idx = st.selectbox("choose column index of timestamp", data.columns)
     x_idx = st.selectbox("choose column index of x-axis", data.columns)
@@ -20,6 +20,6 @@ if log_file is not None:
     if ts_idx is not None and x_idx is not None and y_idx is not None:
         begin_idx, end_idx = st.select_slider("choose plot range", options=range(len(data.index)), format_func=lambda idx: data.iat[idx, ts_idx], value=(0, len(data.index) - 1))
 
-        fig = plt.figure()
-        fig.line(data.iloc[begin_idx:end_idx + 1, x_idx], data.iloc[begin_idx:end_idx + 1, y_idx])
-        st.bokeh_chart(fig)
+        fig = plt.figure(match_aspect=True)
+        fig.line(x=data.iloc[begin_idx:end_idx + 1, x_idx], y=data.iloc[begin_idx:end_idx + 1, y_idx])
+        st.bokeh_chart(fig, use_container_width=True)
