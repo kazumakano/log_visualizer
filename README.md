@@ -1,6 +1,6 @@
 # Log Visualizer
 This is web application to analyze logs graphically.
-This application is made with [Streamlit](https://streamlit.io).
+This application is implemented with [Streamlit](https://streamlit.io).
 
 ## Usage
 ### Home.py
