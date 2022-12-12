@@ -8,8 +8,8 @@ from streamlit.runtime.uploaded_file_manager import UploadedFile
 def dataframe(data: pd.DataFrame) -> None:
     st.dataframe(data=data, use_container_width=True)
 
-def line_chart(x: Any, y: Any, x_label: str, y_label: str) -> None:
-    fig = plt.figure(active_scroll="wheel_zoom", tools="pan,wheel_zoom,box_zoom,save,reset", x_axis_label=x_label, y_axis_label=y_label)
+def line_chart(x: Any, y: Any, x_label: str, y_label: str, **fig_kwargs: Any) -> None:
+    fig = plt.figure(active_scroll="wheel_zoom", tools="pan,wheel_zoom,box_zoom,save,reset", x_axis_label=x_label, y_axis_label=y_label, **fig_kwargs)
     fig.line(x=x, y=y)
     st.bokeh_chart(fig, use_container_width=True)
 
