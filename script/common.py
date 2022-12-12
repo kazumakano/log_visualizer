@@ -16,8 +16,8 @@ def line_chart(x: Any, y: Any, x_label: str, y_label: str) -> None:
 def file_uploader() -> Optional[UploadedFile]:
     return st.file_uploader("choose a log file")
 
-def idx_selectbox(default_idx: int, column_name: str, row_len: int) -> int:
-    return st.selectbox(f"choose column index of {column_name}", range(row_len), index=default_idx)
+def idx_selectbox(default_idx: int, name: str, row_len: int) -> int:
+    return st.selectbox(f"choose column index of {name}", range(row_len), index=default_idx)
 
 def range_select_slider(data: pd.DataFrame, ts_idx: int) -> tuple[int, int]:
     return st.select_slider("choose plot range", options=range(len(data.index)), format_func=lambda idx: data.iat[idx, ts_idx], value=(0, len(data.index) - 1))
