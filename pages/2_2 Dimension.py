@@ -18,4 +18,4 @@ if log_file is not None:
 
     begin_idx, end_idx = common.range_select_slider(data, ts_idx)
 
-    common.line_chart(data.iloc[begin_idx:end_idx + 1, x_idx], data.iloc[begin_idx:end_idx + 1, y_idx], "x", "y", match_aspect=True)
+    common.line_chart(data.iloc[begin_idx:end_idx + 1, ts_idx], data.iloc[begin_idx:end_idx + 1, x_idx], data.iloc[begin_idx:end_idx + 1, y_idx], "x", "y", match_aspect=True)

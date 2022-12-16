@@ -2,15 +2,20 @@ from typing import Any, Optional
 import pandas as pd
 import streamlit as st
 from bokeh import plotting as plt
+from bokeh.models import ColumnDataSource
 from streamlit.runtime.uploaded_file_manager import UploadedFile
 
 
 def dataframe(data: pd.DataFrame) -> None:
     st.dataframe(data=data, use_container_width=True)
 
-def line_chart(x: Any, y: Any, x_label: str, y_label: str, **fig_kwargs: Any) -> None:
-    fig = plt.figure(active_scroll="wheel_zoom", tools="pan,wheel_zoom,box_zoom,save,reset", x_axis_label=x_label, y_axis_label=y_label, **fig_kwargs)
-    fig.line(x=x, y=y)
+def line_chart(ts: Any, x: Any, y: Any, x_label: str, y_label: str, **fig_kwargs: Any) -> None:
+    fig = plt.figure(active_scroll="wheel_zoom", tools="pan,wheel_zoom,box_zoom,save,reset", tooltips=[("ts", "@ts"), ("(x, y)", "($x, $y)")], x_axis_label=x_label, y_axis_label=y_label, **fig_kwargs)
+    fig.line(source=ColumnDataSource({
+        "ts": ts,
+        "x": x,
+        "y": y,
+    }), x="x", y="y")
     st.bokeh_chart(fig, use_container_width=True)
 
 def file_uploader() -> Optional[UploadedFile]:

@@ -17,4 +17,4 @@ if log_file is not None:
 
     begin_idx, end_idx = common.range_select_slider(data, ts_idx)
 
-    common.line_chart(data.index[begin_idx:end_idx + 1], data.iloc[begin_idx:end_idx + 1, y_idx], "timestamp", "y")
+    common.line_chart(data.iloc[begin_idx:end_idx + 1, ts_idx], data.index[begin_idx:end_idx + 1], data.iloc[begin_idx:end_idx + 1, y_idx], "timestamp", "y")
