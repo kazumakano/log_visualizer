@@ -10,7 +10,7 @@ def dataframe(data: pd.DataFrame) -> None:
     st.dataframe(data=data, use_container_width=True)
 
 def line_chart(ts: Any, x: Any, y: Any, x_label: str, y_label: str, **fig_kwargs: Any) -> None:
-    fig = plt.figure(active_scroll="wheel_zoom", tools="pan,wheel_zoom,box_zoom,save,reset", tooltips=[("ts", "@ts"), ("(x, y)", "($x, $y)")], x_axis_label=x_label, y_axis_label=y_label, **fig_kwargs)
+    fig = plt.figure(active_scroll="wheel_zoom", tools="pan,wheel_zoom,box_zoom,save,reset", tooltips=[("ts", "@ts"), ("(x, y)", "(@x, @y)")], x_axis_label=x_label, y_axis_label=y_label, **fig_kwargs)
     fig.line(source=ColumnDataSource({
         "ts": ts,
         "x": x,
